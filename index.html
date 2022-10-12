@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Segmentation</title>
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <py-env>
+        - pandas
+    </py-env>
+
+</head>
+<body>
+    <div class="header">
+    <h1><strong>Customer Segmentation</strong></h1>
+    </div>
+    <div class="transbox">
+        <form action="" name="contains" onsubmit="return false">
+            
+            <label for="Customer Name">Customer Name: </label>
+            <input type="text" value="" name="Customer Name" placeholder="Enter name" id="Name">
+            <br><br>
+
+            <label for="Pcategories">Product Catagories </label>
+            <select name="Pcategories" id="Pcategories" required>
+                <option value="select">--select--</option>
+                <option value="grocery">Grocery</option>
+                <option value="fashion">Fashion</option>
+                <option value="hardware">Hardware</option>
+                <option value="tools">Tools</option>
+                <option value="jwellery">Jewllery</option>
+               
+                <!-- <option value=""></option> -->
+            </select>
+
+            <br><br>
+
+            <label for="payment mode">Choose payment mode: </label>
+            <select name="payment_mode" id="payment_mode" required>
+                <option value="select">--select--</option>
+                <option value="UPI">UPI</option>
+                <option value="Cash">Cash</option>
+                <option value="Card">Card</option>
+     
+             
+            </select>
+
+            <br><br><br><br>
+            
+            <input pys-onClick = "sub" type="submit" value="submit" id = "submit" onclick="">
+            
+
+        </form>
+        
+    </div>
+    <div id="searchbox" class="searchbox">
+        <h1>output</h1>
+        <py-script output="searchbox">
+            def sub(*args,**kwargs):
+                import pandas as pd
+                
+                from pyodide.http import open_url
+                df = pd.read_csv(open_url("https://raw.githubusercontent.com/GunjanKinger123/customer_seg/main/Mall_Customers.csv")) 
+                csv = Element('searchbox')
+                <!-- csv.write(df.head()) -->
+                catagories = Element('Pcategories').value
+                payment = Element('payment_mode').value
+                
+                if (catagories == 'grocery' and payment == 'select'):
+                    data = df.where(df.Pcatagories == "grocery")
+                    final_groc = data.dropna()
+                    csv.write(final_groc)
+                elif (catagories == 'fashion' and payment == 'select' ):
+                    data = df.where(df.Pcatagories == "fashion")
+                    final_groc = data.dropna()
+                    csv.write(final_groc)
+                elif (catagories == 'hardware' and payment == 'select'):
+                    data = df.where(df.Pcatagories == "hardware")
+                    final_groc = data.dropna()
+                    csv.write(final_groc)
+                elif (catagories == 'tools' and payment == 'select'):
+                    data = df.where(df.Pcatagories == "tools")
+                    final_groc = data.dropna()
+                    csv.write(final_groc)
+                elif (catagories == 'jwellery' and payment == 'select'):
+                    data = df.where(df.Pcatagories == "jwellery")
+                    final_groc = data.dropna()
+                    csv.write(final_groc)
+                elif (catagories == 'select' and payment == "UPI"):
+                    data = df.where(df.paymentmode == "UPI")
+                    final_UPI = data.dropna()
+                    csv.write(final_UPI)
+                elif (catagories == 'select' and payment == "Cash"):
+                    data = df.where(df.paymentmode == "Cash")
+                    final_UPI = data.dropna()
+                    csv.write(final_UPI)
+                elif (catagories == 'select' and payment == "Card"):
+                    data = df.where(df.paymentmode == "Card")
+                    final_UPI = data.dropna()
+                    csv.write(final_UPI)
+
+                elif (catagories == 'grocery' and payment == "Cash"):
+                    data = df.where(df.Pcatagories  == 'grocery')
+                    d = data.dropna()
+                    df1 = d
+                    
+                    data = df.where(df1.paymentmode == 'Cash')
+                    b = data.dropna()
+                    csv.write(b)
+
+                elif (catagories == 'grocery' and payment == "Card"):
+                    data = df.where(df.Pcatagories  == 'grocery')
+                    d = data.dropna()
+                    df1 = d
+                    
+                    data = df.where(df1.paymentmode == 'Card')
+                    b = data.dropna()
+                    csv.write(b)
+
+                elif (catagories == 'grocery' and payment == "UPI"):
+                    data = df.where(df.Pcatagories  == 'grocery')
+                    d = data.dropna()
+                    df1 = d
+                    
+                    data = df.where(df1.paymentmode == 'UPI')
+                    b = data.dropna()
+                    csv.write(b)
+                
+                elif (catagories == 'fashion' and payment == "Cash"):
+                    data = df.where(df.Pcatagories  == 'fashion')
+                    d = data.dropna()
+                    df1 = d
+                    
+                    data = df.where(df1.paymentmode == 'Cash')
+                    b = data.dropna()
+                    csv.write(b)
+
+                elif (catagories == 'fashion' and payment == "Card"):
+                    data = df.where(df.Pcatagories  == 'fashion')
+                    d = data.dropna()
+                    df1 = d
+                    
+                    data = df.where(df1.paymentmode == 'Card')
+                    b = data.dropna()
+                    csv.write(b)
+
+                elif (catagories == 'fashion' and payment == "UPI"):
+                    data = df.where(df.Pcatagories  == 'fashion')
+                    d = data.dropna()
+                    df1 = d
+                    
+                    data = df.where(df1.paymentmode == 'UPI')
+                    b = data.dropna()
+                    csv.write(b)
+                
+                elif (catagories == 'hardware' and payment == "Cash"):
+                    data = df.where(df.Pcatagories  == 'hardware')
+                    d = data.dropna()
+                    df1 = d
+                    
+                    data = df.where(df1.paymentmode == 'Cash')
+                    b = data.dropna()
+                    csv.write(b)
+
+                elif (catagories == 'hardware' and payment == "Card"):
+                    data = df.where(df.Pcatagories  == 'hardware')
+                    d = data.dropna()
+                    df1 = d
+                    
+                    data = df.where(df1.paymentmode == 'Card')
+                    b = data.dropna()
+                    csv.write(b)
+
+                elif (catagories == 'hardware' and payment == "UPI"):
+                    data = df.where(df.Pcatagories  == 'hardware')
+                    d = data.dropna()
+                    df1 = d
+                    
+                    data = df.where(df1.paymentmode == 'UPI')
+                    b = data.dropna()
+                    csv.write(b)
+
+                
+                elif (catagories == 'tools' and payment == "Cash"):
+                    data = df.where(df.Pcatagories  == 'tools')
+                    d = data.dropna()
+                    df1 = d
+                    
+                    data = df.where(df1.paymentmode == 'Cash')
+                    b = data.dropna()
+                    csv.write(b)
+
+                elif (catagories == 'tools' and payment == "Card"):
+                    data = df.where(df.Pcatagories  == 'tools')
+                    d = data.dropna()
+                    df1 = d
+                    
+                    data = df.where(df1.paymentmode == 'Card')
+                    b = data.dropna()
+                    csv.write(b)
+
+                elif (catagories == 'tools' and payment == "UPI"):
+                    data = df.where(df.Pcatagories  == 'tools')
+                    d = data.dropna()
+                    df1 = d
+                    
+                    data = df.where(df1.paymentmode == 'UPI')
+                    b = data.dropna()
+                    csv.write(b)
+        </py-script>
+    </div>
+</body>
+</html>
